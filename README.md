@@ -40,4 +40,14 @@ Backend settings live in `backend/.env` (copy from `.env.example`).
 ## Answers
 
 The Yes / No answer is saved in SQLite at `backend/data/app.db`.
-See saved answers at http://localhost:5000/api/answers (or `/api/answers` through the frontend dev server).
+See it at **/admin** (e.g. http://localhost:5173/admin in dev); it asks for `ADMIN_PASSWORD` from `backend/.env`.
+
+## Deploying (one link)
+
+In production the backend also serves the built frontend, so one web service is enough:
+
+- Build command: `npm run build`
+- Start command: `npm start`
+- Environment: `NODE_ENV=production`, `ADMIN_PASSWORD=<your password>`
+
+SQLite is a file on the server's disk: use a host with a persistent disk/volume, or answers are lost when the server restarts.
