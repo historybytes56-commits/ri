@@ -1,0 +1,52 @@
+:root {
+  --text: rgba(255, 255, 255, 0.78);
+  --text-h: #fff;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --accent: #ff6b9a;
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  /* page gutter: 16px on phones (e.g. Redmi Note 14, ~393px wide), more on larger screens */
+  --gutter: clamp(16px, 5vw, 32px);
+
+  font: 16px/1.5 var(--sans);
+  color: var(--text);
+  color-scheme: dark;
+  background: #07060f;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 17px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+h1,
+h2 {
+  color: var(--text-h);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}

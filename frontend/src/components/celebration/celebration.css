@@ -1,0 +1,61 @@
+/* Fills the landscape stage, behind the final question. */
+.celebration {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  animation: celebration-in 0.8s ease both;
+}
+
+@keyframes celebration-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- fireworks ---------- */
+.fireworks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- gifs ---------- */
+.celebration-gif {
+  position: absolute;
+  height: clamp(80px, 28cqh, 180px);
+  max-width: 24cqw;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  animation:
+    gif-pop 0.9s cubic-bezier(0.2, 1.8, 0.4, 1) both,
+    gif-float 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes gif-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.2) rotate(calc(var(--tilt) * -2));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(var(--tilt));
+  }
+}
+
+@keyframes gif-float {
+  from { translate: 0 0; }
+  to   { translate: 0 -8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebration-gif {
+    animation-duration: 0.01s;
+    animation-iteration-count: 1;
+  }
+}

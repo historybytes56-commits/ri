@@ -1,0 +1,164 @@
+.message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.message-stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* ---------- sentence ---------- */
+.sentence {
+  margin: 0;
+  /* wide lines so the text reads as a landscape block, not a narrow column */
+  width: min(100%, 64ch);
+  text-align: center;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(26px, 3cqw + 2.4cqh, 48px);
+  line-height: 1.4;
+  color: var(--text-h);
+  text-wrap: balance;
+  animation: sentence-in 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+.sentence.is-leaving {
+  animation: sentence-out 1.6s cubic-bezier(0.45, 0, 0.55, 1) both;
+}
+
+@keyframes sentence-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes sentence-out {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(1.01);
+    filter: blur(8px);
+  }
+}
+
+/* ---------- final question ---------- */
+.sentence-final {
+  width: auto;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(40px, 4.5cqw + 4cqh, 80px);
+  line-height: 1.15;
+  text-shadow: 0 0 28px rgba(255, 107, 154, 0.55);
+  animation-duration: 2.6s;
+}
+
+.final {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 6cqh, 36px);
+}
+
+/* ---------- read again (top-left of the landscape stage) ---------- */
+.read-again {
+  position: absolute;
+  top: clamp(10px, 4cqh, 20px);
+  left: clamp(10px, 2.5cqw, 24px);
+  z-index: 2;
+  min-height: 36px;
+  font-size: 13px;
+  animation: answer-in 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 2.4s both;
+}
+
+.read-again .glass-content {
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px 6px 11px;
+}
+
+.read-again svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------- yes / no ---------- */
+.answer-buttons {
+  display: flex;
+  gap: 16px;
+  animation: answer-in 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 2.4s both;
+}
+
+/* hidden (and not tappable) until it has faded in */
+@keyframes answer-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    filter: blur(8px);
+  }
+  1% {
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.answer-buttons .glass-button .glass-content {
+  min-width: clamp(110px, 16cqw, 150px);
+  padding: 12px 28px;
+  font-size: clamp(17px, 1.4cqw + 1.4cqh, 22px);
+  letter-spacing: 0.02em;
+}
+
+.answer-yes {
+  --tint: rgba(255, 107, 154, 0.3);
+}
+
+.answer-reply {
+  margin: 0;
+  max-width: min(100%, 56ch);
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2cqw + 2.4cqh, 34px);
+  line-height: 1.35;
+  color: var(--text);
+  animation: sentence-in 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sentence,
+  .sentence.is-leaving,
+  .answer-buttons,
+  .answer-reply,
+  .read-again {
+    animation-duration: 0.4s;
+    filter: none;
+  }
+}

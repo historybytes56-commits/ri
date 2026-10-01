@@ -1,0 +1,62 @@
+.rotate-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: var(--gutter);
+  background: #07060f;
+  text-align: center;
+  animation: rotate-prompt-life 5s ease both;
+}
+
+/* fade in, stay, fade out — 5s total (ROTATE_PROMPT_MS) */
+@keyframes rotate-prompt-life {
+  0%   { opacity: 0; }
+  12%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.rotate-prompt h1 {
+  font-size: clamp(26px, 8vw, 34px);
+}
+
+.rotate-prompt p {
+  color: var(--text);
+  font-size: 17px;
+}
+
+.rotate-icon {
+  width: min(45vw, 30vh, 180px);
+  margin-bottom: 12px;
+}
+
+.rotate-icon .rotate-arrow,
+.rotate-icon .rotate-phone * {
+  stroke: var(--text-h);
+}
+
+.rotate-icon .rotate-arrow {
+  opacity: 0.7;
+}
+
+/* turns counter-clockwise (to the left) into landscape, then resets */
+.rotate-phone {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rotate-left 2.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes rotate-left {
+  0%, 15%   { transform: rotate(0deg); }
+  45%, 80%  { transform: rotate(-90deg); }
+  100%      { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotate-phone { animation: none; }
+}
