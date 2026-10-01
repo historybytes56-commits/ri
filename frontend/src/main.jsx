@@ -6,7 +6,9 @@ import App from './App.jsx'
 import { GlassFilter } from './components/glass/index.js'
 import AdminPage from './pages/AdminPage.jsx'
 
-const isAdmin = window.location.pathname.startsWith('/admin')
+// /admin, or /#admin for static hosts that can't serve /admin directly.
+const isAdmin =
+  window.location.pathname.startsWith('/admin') || window.location.hash === '#admin'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
