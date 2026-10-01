@@ -2,10 +2,10 @@
   "name": "forrizh",
   "private": true,
   "scripts": {
-    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "build": "npm install --include=dev --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
     "start": "npm start --prefix backend"
   },
   "engines": {
-    "node": ">=22.13"
+    "node": "24.x"
   }
 }
